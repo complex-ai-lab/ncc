@@ -33,7 +33,7 @@ Now with the predictions, you can use e2ecp.py to construct the uncertainty boun
 ` python e2ecp.py -i=<exp_id> -t`
 This will save a trained model's parameters as `models/<exp_id>.pt`. Then to calibrate for the test dataset, run:
 ` python e2ecp.py -i=<exp_id>`
-This generates a `<exp_id>_<seed>.pkl` file under the `results/` folder. The results can be downloaded directly from this [link]([https://](https://drive.google.com/drive/folders/1KfYcmDPUVc0vJgN6QZ2eB7Z_DwDNIJE6?usp=sharing))
+This generates a `<exp_id>_<seed>.pkl` file under the `results/` folder. The results can be downloaded directly from this [link](https://drive.google.com/drive/folders/1KfYcmDPUVc0vJgN6QZ2eB7Z_DwDNIJE6?usp=sharing)
 
 #### How to tune hyperparameters for your own dataset or base forecasters?
 The `bayesian_tuning.py` file implements bayesian optimization for hyperparameter tuning. Modify the parameter space and black box function to set the hyperparameters you would like to tune.
