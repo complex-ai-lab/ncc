@@ -1,0 +1,88 @@
+dataset: covid
+target: flu_hospitalizations
+seed: 17
+weeks_ahead: 4
+input_files:
+  parent_dir: ../../data/
+  weekly_data: 202414.csv
+data_params:
+  max_training_samples: 50000
+  start_time: '202043' # start train data on epidemic week 43, 2020
+  min_sequence_length: 17
+  smooth_window: 4 # 4 weeks moving average
+  pad_value: -9
+data_features:
+  - covid_hospitalizations
+  - flu_hospitalizations
+  - doctor_visits
+  - symptom_Fever
+  - symptom_Low_grade_fever
+  - symptom_Cough
+  - symptom_Sore_throat
+  - symptom_Headache
+  - symptom_Fatigue
+  - symptom_Vomiting
+  - symptom_Diarrhea
+  - symptom_Shortness_of_breath
+  - symptom_Chest_pain
+  - symptom_Dizziness
+  - symptom_Confusion
+  - symptom_Generalized_tonic_clonic_seizure
+  - percent_ili
+  - ilitotal
+  - num_of_providers
+  - total_patients
+regions: 
+  - AL
+  - AK
+  - AZ
+  - AR
+  - CA
+  - CO
+  - CT
+  - DE
+  - DC
+  - FL
+  - GA
+  - ID
+  - IL
+  - IN
+  - IA
+  - KS
+  - KY
+  - LA
+  - ME
+  - MD
+  - MA
+  - MI
+  - MN
+  - MS
+  - MO
+  - MT
+  - NE
+  - NV
+  - NH
+  - NJ
+  - NM
+  - NY
+  - NC
+  - ND
+  - OH
+  - OK
+  - OR
+  - PA
+  - RI
+  - SC
+  - SD
+  - TN
+  - TX
+  - UT
+  - VT
+  - VA
+  - WA
+  - WV
+  - WI
+  - WY
+  - PR
+  - HI
+  - US # USA

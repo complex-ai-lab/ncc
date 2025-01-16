@@ -1,0 +1,17 @@
+dataset: smd
+target: sensor3
+seed: 17
+weeks_ahead: 4
+input_files:
+  parent_dir: ../../data/
+  weekly_data: smd.csv
+data_params:
+  max_training_samples: 50000
+  start_time: 1
+  min_sequence_length: 30
+  smooth_window: 4
+  pad_value: -9
+  idx_column: 'NA'
+data_features: []
+regions: 
+  - X

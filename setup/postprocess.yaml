@@ -1,0 +1,12 @@
+exp_ids: [4712, 4711, 4713, 4701, 4704, 4705, 4706, 4707]  # the final result will be the combination of these experiments. The first one is the default experiment. The test results in regions defined by region2exp are replaced with prediction from other experiments.
+
+seeds: [10, 10, 10, 17, 17, 17, 17, 17]
+
+output_exp: 4799  # combined exp ids starts from 10000, use 19999 as test exp id
+
+region2exp: {CA: 4706, CO: 4701, CT: 4705, DC: 4707, FL: 4706, IA: 4706, IN: 4707, LA: 4713, MD: 4707, ME: 4707, MI: 4705, MN: 4707, NC: 4707, WY: 4704}
+
+region2shift: {US: 500, IL: 30}
+
+# IL, US
+regions2remove: []

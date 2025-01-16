@@ -1,0 +1,18 @@
+hps_id: 8
+
+rounds: 9
+
+hps:
+  model_parameters: {
+      hidden_dim: [128, 64, 32],
+      out_layer_dim: [128, 64, 32, 16]
+  }
+  training_parameters: {
+      batch_size: [16, 32, 64, 128],
+      gamma: [0.1, 0.01, 0.001],
+      lr: [0.01, 0.001, 0.0001],
+  }
+  data_params: {
+      min_sequence_length: [10, 20, 30],
+  }
+      

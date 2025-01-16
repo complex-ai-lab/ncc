@@ -1,0 +1,29 @@
+dataset: covid
+target: covid_hospitalizations
+
+exp_id: 19
+data_id: 19
+test_time: 202410
+pred_starting_time: 202110
+# over-writing parameters
+model_name: seq2seq
+
+
+description: covid test data normalized
+
+aheads: [1, 2, 3, 4]
+smooth: False
+fix_window: True
+true_scale: True
+total_steps: 1000   # maximum weeks
+skip_beginning: 0
+multi_seed: False
+# rft
+region_fine_tuning: True
+rft_epochs: 20
+rft_batch_size: 32
+# week retraining: if False, use model state dict from previous week
+week_retrain: True
+week_retrain_epochs: 200
+# skip weeks, train once and use the pretrained model state for a few weeks
+week_retrain_period: 5

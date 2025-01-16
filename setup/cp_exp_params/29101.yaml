@@ -1,0 +1,99 @@
+#############################################################
+# End-to-end by moving the conformalization step into model #
+#############################################################
+
+###########
+# weather #
+###########
+
+# follow hyperopt
+
+seed: 1
+data_file_id: 31
+multi_seed: True
+seeds: [1, 2, 3, 4]
+
+week_ahead_list: [5]
+
+training_params:
+
+  three_stage_training: False
+  epochs_in_stage: [50, 50, 10]
+  alter_training: False
+  epochs: 200
+  region_fine_tuning: False
+
+  val_weeks: 144
+  test_weeks: 144
+
+  cov_window_size: 25
+  qloss_factor: 0.21
+  closs_factor: 1
+  eloss_factor: 0.000045
+  mloss_factor: 1
+  K: 0.37
+
+  lr: 0.0001
+
+  # retrain
+  retrain: True
+  retrain_with_saved_weights: False
+  retrain_period: 5
+  retrain_epoch: 20
+  retrain_epochs: [5, 5, 10]
+
+  # test time adaption
+  use_tta: True
+  use_tta_ffn: True
+  tta_reg_factor: 0.05
+  tta_lr: 0.0005
+
+model_params:
+  use_ainfo: False
+  e2ecf: True
+  cf_lr: 0.00002
+
+  model_name: transformer
+  actv_type: tanh
+
+  # updated params
+  cumulative_quantiles: True
+  with_week_id: True # modify in code
+  alphas: [] # modify in code
+  num_regions: 0 # modify in code
+  num_aheads: 0 # modify in code
+  window_size: 0 # modify in code
+
+  hidden_dim: 32
+
+  # encoder
+  encoder_input_dim: 0 # modify in code
+  encoder_hidden_dim: 32
+  encoder_num_layers: 2
+  encoder_heads: 8
+
+  # decoder
+  decoder_hidden_dim: 32
+  decoder_num_layers: 2
+
+  # error_encoder
+  error_encoder_hidden_dim: 64
+
+  # qhat_encoder
+  qhat_encoder_type: rnn # rnn, transformerrnn, informer
+  qhat_encoder_hidden_dim: 128
+  qhat_encoder_num_layers: 8
+  qhat_encoder_num_heads: 16
+  qhat_encoder_rd_hidden_dim: 128
+  qhat_encoder_rd_num_layers: 2
+
+  # alpha_encoder
+  alpha_encoder_hidden_dim: 64
+
+  # score_encoder
+  score_encoder_input_dim: 3
+  score_encoder_hidden_dim: 32
+  score_encoder_num_layers: 8
+
+  # q_model
+  q_fc_hidden_dim: 128

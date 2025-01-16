@@ -1,0 +1,97 @@
+# covid
+
+seed: 1
+data_file_id: 19
+multi_seed: True
+seeds: [1, 2, 3, 4]
+
+week_ahead_list: [1]
+
+training_params:
+  three_stage_training: True
+  epochs_in_stage: [50, 50, 1]
+  alter_training: False
+  epochs: 2
+  region_fine_tuning: False
+
+  val_weeks: 1
+  test_weeks: 122
+
+  loss_factors:
+    - [0.1, 0, 0]  # stage 1
+    - [0, 1, 0]  # stage 2
+    - [0.1, 1, 0] # stage 3
+
+  cov_window_size: 15
+  qloss_factor: 0.1
+  closs_factor: 1
+  eloss_factor: 0.001
+  mloss_factor: 1
+  K: 2.26
+
+  lr: 0.0001
+
+  # retrain
+  retrain: True
+  retrain_with_saved_weights: True
+  retrain_period: 2
+  retrain_epoch: 5
+  retrain_epochs: [10, 10, 2]
+
+  # test time adaption
+  use_tta: False
+  use_tta_ffn: True
+  tta_reg_factor: 0.001
+  tta_lr: 0.0005
+
+  total_steps_limit: 70
+
+model_params:
+  use_ainfo: False
+  e2ecf: True
+  cf_lr: 0.0005
+
+  model_name: transformer
+  actv_type: tanh
+
+  # updated params
+  cumulative_quantiles: True
+  with_week_id: True # modify in code
+  alphas: [] # modify in code
+  num_regions: 0 # modify in code
+  num_aheads: 0 # modify in code
+  window_size: 0 # modify in code
+
+  hidden_dim: 32
+
+  # encoder
+  encoder_input_dim: 0 # modify in code
+  encoder_hidden_dim: 32
+  encoder_num_layers: 2
+  encoder_heads: 8
+
+  # decoder
+  decoder_hidden_dim: 32
+  decoder_num_layers: 2
+
+  # error_encoder
+  error_encoder_hidden_dim: 64
+
+  # qhat_encoder
+  qhat_encoder_type: rnn # rnn, transformerrnn, informer
+  qhat_encoder_hidden_dim: 128
+  qhat_encoder_num_layers: 8
+  qhat_encoder_num_heads: 16
+  qhat_encoder_rd_hidden_dim: 64
+  qhat_encoder_rd_num_layers: 8
+
+  # alpha_encoder
+  alpha_encoder_hidden_dim: 128
+
+  # score_encoder
+  score_encoder_input_dim: 3
+  score_encoder_hidden_dim: 64
+  score_encoder_num_layers: 2
+
+  # q_model
+  q_fc_hidden_dim: 64

@@ -1,0 +1,167 @@
+train: True
+model_path: '../../models/'
+data_file_id: 4
+
+use_pretrained_model: false
+pretrained_model_path: '../../models/'
+
+test_cp_lr_corrected: False
+
+alphas: [0.02, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+
+# [1, 2, 3, 4]
+week_ahead_list: [1]
+
+training_params:
+  init_err_seq_w_alpha: False
+
+  # three stage training: train with qloss first, then closs, then alternate qloss, closs and eloss
+  three_stage_training: False
+  alter_training: False
+  epochs_in_stage: [100, 50, 10]
+
+  qloss_factor: 0.01
+  closs_factor: 1
+  eloss_factor: 0.00108
+  mloss_factor: 1
+
+  loss_factors:
+    - [0.1, 0, 0]  # stage 1
+    - [0, 1, 0.1]  # stage 2
+    - [0.1, 1, 0.1] # stage 3
+  
+  closs_thre: 0
+
+  # cov_window_size: 15
+  # qloss_factor: 0.2
+  # closs_factor: 1
+  # eloss_factor: 0.0001
+  # mloss_factor: 1
+  # K: 0.14218297634863686
+
+  use_scalar: True
+  region_fine_tuning: False
+
+  device: cuda:0
+  lr: 0.0001
+  gamma: 0.01
+  epochs: 500
+
+  # retrain
+  retrain: True
+  retrain_with_cf: False # when retraining, use cf. Remember to set cf_lr to false when using this option
+  retrain_with_saved_weights: True # if set to false, the pretrained_model will always be the model trained from training phase.
+  retrain_window: -1 # retrain_window is set to -1 during training phase.
+  retrain_period: 5
+  retrain_epoch: 50
+  retrain_epochs: [10, 10, 1]
+
+  # tta
+  use_tta: False
+  use_tta_ffn: True
+  tta_reg_factor: 0
+  tta_lr: 0.0005
+  tta_ffn_mask: False
+  tta_ffn_l1reg: False
+
+  total_steps_limit: 10000 # only works during forecasting
+
+  # val_weeks: 10
+  # test_weeks: 70 # exp 20-30
+  # test_weeks: 30 # exp 1-19
+
+model_params:
+  # new params
+  cf_lr: 0.05
+  e2ecf: True
+  use_deltaq_emb: False
+
+  model_name: transformer
+  actv_type: tanh
+
+  # what information to use
+  use_ainfo: True
+  use_graph: False
+  attn1_num_heads: 2
+
+  # updated params
+  cumulative_quantiles: True
+  with_week_id: True # modify in code
+  alphas: [] # modify in code
+  num_regions: 0 # modify in code
+  num_aheads: 0 # modify in code
+  window_size: 0 # modify in code
+  seq_length: 0 # modify in code, should be sequence length of x
+
+  hidden_dim: 64
+
+  # encoder
+  fuse_mv_data: True
+  x_encoder_type: transformer # transformer/informer/mvencoder
+  x_encoder_seq_encoder_type: gru # gru/seq2seq
+  encoder_input_dim: 0 # modify in code
+  encoder_hidden_dim: 32
+  encoder_num_layers: 2
+  encoder_heads: 8
+  # encoder informer
+  encoder_informer:
+    informer_rnn_hidden_dim: 32
+    informer_rnn_layers: 4
+    # init when setup
+    informer_output_dim: 0
+    informer_enc_in: 0 # should be hidden dim
+    informer_seq_length: 0 
+    informer_dec_in: 1
+    # copy from params
+    num_regions: 0
+    num_aheads: 0
+    with_time_emb: False
+
+  # decoder
+  decoder_hidden_dim: 32
+  decoder_num_layers: 2
+
+  # error_encoder
+  error_encoder_hidden_dim: 32
+
+  # qhat_encoder
+  qhat_encoder_type: informer # rnn, transformerrnn, informer
+  qhat_encoder_hidden_dim: 32
+  qhat_encoder_num_layers: 4
+  qhat_encoder_num_heads: 4
+  qhat_encoder_rd_hidden_dim: 64
+  qhat_encoder_rd_num_layers: 4
+  # qhat informer
+  qhat_informer:
+    informer_rnn_hidden_dim: 64
+    informer_rnn_layers: 4
+    # init when setup
+    informer_output_dim: 0
+    informer_enc_in: 0
+    informer_seq_length: 0
+    informer_dec_in: 1
+    # copy from params
+    num_regions: 0
+    num_aheads: 0
+    with_time_emb: 0
+
+  # alpha_encoder
+  alpha_encoder_hidden_dim: 32
+
+  # score_encoder
+  score_encoder_input_dim: 3
+  score_encoder_hidden_dim: 64
+  score_encoder_num_layers: 2
+
+  # q_model
+  q_fc_hidden_dim: 128
+  
+  # informer fixed params
+  informer_shared_params:
+    informer_factor: 5
+    informer_d_model: 128
+    informer_n_heads: 8
+    informer_e_layers: 3
+    informer_d_layers: 2
+    informer_d_ff: 512
+    informer_dropout: 0.0

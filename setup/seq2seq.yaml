@@ -1,0 +1,48 @@
+# used for the base pred
+# model_name: seq2seq
+# device: cuda:0 # cpu
+# training_parameters:
+#   batch_size: 32
+#   epochs: 500
+#   gamma: 0.1
+#   lr: 0.0003
+#   patience: 50
+# model_parameters:
+#   hidden_dim: 32
+#   out_layer_dim: 16
+#   num_heads: 8
+#   num_layers: 4
+#   rnn_hidden_dim: 32
+#   rnn_layers: 16
+
+# for end2end cp
+model_name: transformer
+device: cuda:0 # cpu
+# device: cpu
+# training_parameters:
+#   batch_size: 32
+#   epochs: 500
+#   gamma: 0.1
+#   lr: 0.00001
+#   patience: 50
+# model_parameters:
+#   hidden_dim: 32
+#   out_layer_dim: 16
+#   num_heads: 8
+#   num_layers: 4
+#   rnn_hidden_dim: 32
+#   rnn_layers: 16
+# params for informer2
+training_parameters:
+  batch_size: 32
+  epochs: 500
+  gamma: 0.1
+  lr: 0.0003
+  patience: 50
+model_parameters:
+  hidden_dim: 128
+  out_layer_dim: 64
+  num_heads: 8
+  num_layers: 16
+  rnn_hidden_dim: 32
+  rnn_layers: 16

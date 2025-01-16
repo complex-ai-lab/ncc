@@ -1,0 +1,17 @@
+dataset: weather
+target: OT
+seed: 17
+weeks_ahead: 4
+input_files:
+  parent_dir: ../../data/
+  weekly_data: weather.csv
+data_params:
+  max_training_samples: 50000
+  start_time: '2020-01-01 00:10:00'
+  min_sequence_length: 30
+  smooth_window: 4
+  pad_value: -9
+  idx_column: date
+data_features: []
+regions: 
+  - X

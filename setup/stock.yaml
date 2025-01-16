@@ -1,0 +1,17 @@
+dataset: stock
+target: HML
+seed: 17
+weeks_ahead: 4
+input_files:
+  parent_dir: ../../data/stock_market_return/
+  weekly_data: factors_daily.CSV
+data_params:
+  max_training_samples: 50000
+  start_time: 1
+  min_sequence_length: 30
+  smooth_window: 4
+  pad_value: -9
+  idx_column: 'NA'
+data_features: []
+regions: 
+  - X

@@ -1,0 +1,15 @@
+numpy
+epiweeks
+torch
+pandas
+matplotlib
+scipy
+scikit-learn
+PyYAML
+pickle5
+tqdm
+statsmodels
+dgl
+hyperopt
+properscoring
+ipykernel

@@ -1,0 +1,42 @@
+dataset: electricity
+
+exp_id: 50
+data_id: 50
+test_time: 1000
+pred_starting_time: 500
+
+# over-writing parameters
+model_name: seq2seq
+
+description: electricity transfer dataset generation. 500 data points. true scale.
+
+aheads: [1, 2, 3, 4]
+smooth: False
+fix_window: True
+true_scale: True
+total_steps: 20000   # maximum weeks
+skip_beginning: 0
+multi_seed: False
+# rft
+region_fine_tuning: False
+rft_epochs: 200
+rft_batch_size: 32
+# week retraining: if False, use model state dict from previous week
+week_retrain: True
+week_retrain_epochs: 200
+# skip weeks, train once and use the pretrained model state for a few weeks
+week_retrain_period: 10
+
+training_parameters:
+  batch_size: 32
+  epochs: 500
+  gamma: 0.1
+  lr: 0.00001
+  patience: 50
+model_parameters:
+  hidden_dim: 128
+  out_layer_dim: 64
+  num_heads: 8
+  num_layers: 4
+  rnn_hidden_dim: 128
+  rnn_layers: 8
