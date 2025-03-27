@@ -94,8 +94,9 @@ def model_init(params, metas_dim, x_dim, device, seq_length):
             num_layers=params['model_parameters']['num_layers'],
             num_heads=params['model_parameters']['num_heads'],
             num_regions=metas_dim,
-            rnn_hidden_dim=params['model_parameters']['rnn_hidden_dim'],
-            rnn_layers=params['model_parameters']['rnn_layers'],
+            dr_hidden_dim=params['model_parameters']['rnn_hidden_dim'],
+            dr_layers=params['model_parameters']['rnn_layers'],
+            dt_layers=params['model_parameters']['rnn_layers'],
         )
     if params['model_name'] == 'dlinear':
         model = DlinearModel(

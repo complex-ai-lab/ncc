@@ -6,7 +6,7 @@ test_time: 1000
 pred_starting_time: 500
 
 # over-writing parameters
-model_name: seq2seq
+model_name: transformer
 
 description: electricity transfer dataset generation. 500 data points. true scale.
 
